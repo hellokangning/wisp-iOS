@@ -1,0 +1,641 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C7147759B2B7757CA52F488 /* libPods-wisp-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7520BAE8A587A5EEB5E2D0FC /* libPods-wisp-iOS.a */; };
+		AF3D9ADD1D9BD70500B497C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3D9ADC1D9BD70500B497C9 /* main.m */; };
+		AF3D9AE01D9BD70500B497C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3D9ADF1D9BD70500B497C9 /* AppDelegate.m */; };
+		AF3D9AE31D9BD70500B497C9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3D9AE21D9BD70500B497C9 /* ViewController.m */; };
+		AF3D9AE61D9BD70500B497C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF3D9AE41D9BD70500B497C9 /* Main.storyboard */; };
+		AF3D9AE81D9BD70500B497C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF3D9AE71D9BD70500B497C9 /* Assets.xcassets */; };
+		AF3D9AEB1D9BD70500B497C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF3D9AE91D9BD70500B497C9 /* LaunchScreen.storyboard */; };
+		AF3D9AF61D9BD70500B497C9 /* wisp_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3D9AF51D9BD70500B497C9 /* wisp_iOSTests.m */; };
+		AF3D9B011D9BD70500B497C9 /* wisp_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3D9B001D9BD70500B497C9 /* wisp_iOSUITests.m */; };
+		AF3D9B0F1D9BD97500B497C9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3D9B0E1D9BD97500B497C9 /* CoreLocation.framework */; };
+		AF3D9B141D9BDD6000B497C9 /* WISPLocationMgrDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3D9B131D9BDD6000B497C9 /* WISPLocationMgrDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		AF3D9B1A1D9D331E00B497C9 /* CLLocationManager+Simulator.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3D9B191D9D331E00B497C9 /* CLLocationManager+Simulator.m */; settings = {ASSET_TAGS = (); }; };
+		AFAD527E1D9E27E200E65264 /* WISPSysDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = AFAD527D1D9E27E200E65264 /* WISPSysDetector.m */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AF3D9AF21D9BD70500B497C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF3D9AD01D9BD70500B497C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF3D9AD71D9BD70500B497C9;
+			remoteInfo = "wisp-iOS";
+		};
+		AF3D9AFD1D9BD70500B497C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF3D9AD01D9BD70500B497C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF3D9AD71D9BD70500B497C9;
+			remoteInfo = "wisp-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		51E1E17F51CAF55DB21AD044 /* Pods-wisp-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wisp-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-wisp-iOS/Pods-wisp-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		7520BAE8A587A5EEB5E2D0FC /* libPods-wisp-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wisp-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF3D9AD81D9BD70500B497C9 /* wisp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "wisp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF3D9ADC1D9BD70500B497C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AF3D9ADE1D9BD70500B497C9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AF3D9ADF1D9BD70500B497C9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AF3D9AE11D9BD70500B497C9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		AF3D9AE21D9BD70500B497C9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AF3D9AE51D9BD70500B497C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AF3D9AE71D9BD70500B497C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AF3D9AEA1D9BD70500B497C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AF3D9AEC1D9BD70500B497C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF3D9AF11D9BD70500B497C9 /* wisp-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "wisp-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF3D9AF51D9BD70500B497C9 /* wisp_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = wisp_iOSTests.m; sourceTree = "<group>"; };
+		AF3D9AF71D9BD70500B497C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF3D9AFC1D9BD70500B497C9 /* wisp-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "wisp-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF3D9B001D9BD70500B497C9 /* wisp_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = wisp_iOSUITests.m; sourceTree = "<group>"; };
+		AF3D9B021D9BD70500B497C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF3D9B0E1D9BD97500B497C9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		AF3D9B121D9BDCC800B497C9 /* WISPLocationMgrDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WISPLocationMgrDelegate.h; sourceTree = "<group>"; };
+		AF3D9B131D9BDD6000B497C9 /* WISPLocationMgrDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WISPLocationMgrDelegate.m; sourceTree = "<group>"; };
+		AF3D9B181D9D32F600B497C9 /* CLLocationManager+Simulator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocationManager+Simulator.h"; sourceTree = "<group>"; };
+		AF3D9B191D9D331E00B497C9 /* CLLocationManager+Simulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+Simulator.m"; sourceTree = "<group>"; };
+		AF3D9B1D1D9D3E2600B497C9 /* WISPSysDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WISPSysDetector.h; sourceTree = "<group>"; };
+		AFAD527D1D9E27E200E65264 /* WISPSysDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WISPSysDetector.m; sourceTree = "<group>"; };
+		F0B90A075010BF5C4ECDAD4B /* Pods-wisp-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wisp-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wisp-iOS/Pods-wisp-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF3D9AD51D9BD70500B497C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF3D9B0F1D9BD97500B497C9 /* CoreLocation.framework in Frameworks */,
+				0C7147759B2B7757CA52F488 /* libPods-wisp-iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF3D9AEE1D9BD70500B497C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF3D9AF91D9BD70500B497C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		23A3A43804280E08F7560089 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F0B90A075010BF5C4ECDAD4B /* Pods-wisp-iOS.debug.xcconfig */,
+				51E1E17F51CAF55DB21AD044 /* Pods-wisp-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7E25872AD7FFA80BAA9369ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7520BAE8A587A5EEB5E2D0FC /* libPods-wisp-iOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF3D9ACF1D9BD70500B497C9 = {
+			isa = PBXGroup;
+			children = (
+				AF3D9B111D9BDB7F00B497C9 /* WISP */,
+				AF3D9B101D9BD9B000B497C9 /* Frameworks */,
+				AF3D9ADA1D9BD70500B497C9 /* wisp-iOS */,
+				AF3D9AF41D9BD70500B497C9 /* wisp-iOSTests */,
+				AF3D9AFF1D9BD70500B497C9 /* wisp-iOSUITests */,
+				AF3D9AD91D9BD70500B497C9 /* Products */,
+				23A3A43804280E08F7560089 /* Pods */,
+				7E25872AD7FFA80BAA9369ED /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AF3D9AD91D9BD70500B497C9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF3D9AD81D9BD70500B497C9 /* wisp-iOS.app */,
+				AF3D9AF11D9BD70500B497C9 /* wisp-iOSTests.xctest */,
+				AF3D9AFC1D9BD70500B497C9 /* wisp-iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF3D9ADA1D9BD70500B497C9 /* wisp-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				AF3D9ADE1D9BD70500B497C9 /* AppDelegate.h */,
+				AF3D9ADF1D9BD70500B497C9 /* AppDelegate.m */,
+				AF3D9AE11D9BD70500B497C9 /* ViewController.h */,
+				AF3D9AE21D9BD70500B497C9 /* ViewController.m */,
+				AF3D9AE41D9BD70500B497C9 /* Main.storyboard */,
+				AF3D9AE71D9BD70500B497C9 /* Assets.xcassets */,
+				AF3D9AE91D9BD70500B497C9 /* LaunchScreen.storyboard */,
+				AF3D9AEC1D9BD70500B497C9 /* Info.plist */,
+				AF3D9ADB1D9BD70500B497C9 /* Supporting Files */,
+			);
+			path = "wisp-iOS";
+			sourceTree = "<group>";
+		};
+		AF3D9ADB1D9BD70500B497C9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AF3D9ADC1D9BD70500B497C9 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AF3D9AF41D9BD70500B497C9 /* wisp-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				AF3D9AF51D9BD70500B497C9 /* wisp_iOSTests.m */,
+				AF3D9AF71D9BD70500B497C9 /* Info.plist */,
+			);
+			path = "wisp-iOSTests";
+			sourceTree = "<group>";
+		};
+		AF3D9AFF1D9BD70500B497C9 /* wisp-iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AF3D9B001D9BD70500B497C9 /* wisp_iOSUITests.m */,
+				AF3D9B021D9BD70500B497C9 /* Info.plist */,
+			);
+			path = "wisp-iOSUITests";
+			sourceTree = "<group>";
+		};
+		AF3D9B101D9BD9B000B497C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF3D9B0E1D9BD97500B497C9 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			path = "wisp-iOS";
+			sourceTree = "<group>";
+		};
+		AF3D9B111D9BDB7F00B497C9 /* WISP */ = {
+			isa = PBXGroup;
+			children = (
+				AF3D9B121D9BDCC800B497C9 /* WISPLocationMgrDelegate.h */,
+				AF3D9B131D9BDD6000B497C9 /* WISPLocationMgrDelegate.m */,
+				AF3D9B181D9D32F600B497C9 /* CLLocationManager+Simulator.h */,
+				AF3D9B191D9D331E00B497C9 /* CLLocationManager+Simulator.m */,
+				AF3D9B1D1D9D3E2600B497C9 /* WISPSysDetector.h */,
+				AFAD527D1D9E27E200E65264 /* WISPSysDetector.m */,
+			);
+			name = WISP;
+			path = "wisp-iOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AF3D9AD71D9BD70500B497C9 /* wisp-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF3D9B051D9BD70500B497C9 /* Build configuration list for PBXNativeTarget "wisp-iOS" */;
+			buildPhases = (
+				8097D0135C108616A3DB43CC /* [CP] Check Pods Manifest.lock */,
+				AF3D9AD41D9BD70500B497C9 /* Sources */,
+				AF3D9AD51D9BD70500B497C9 /* Frameworks */,
+				AF3D9AD61D9BD70500B497C9 /* Resources */,
+				383BC695B8533097A09CED3F /* [CP] Embed Pods Frameworks */,
+				A4E8F12C175EF06D53208C44 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "wisp-iOS";
+			productName = "wisp-iOS";
+			productReference = AF3D9AD81D9BD70500B497C9 /* wisp-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AF3D9AF01D9BD70500B497C9 /* wisp-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF3D9B081D9BD70500B497C9 /* Build configuration list for PBXNativeTarget "wisp-iOSTests" */;
+			buildPhases = (
+				AF3D9AED1D9BD70500B497C9 /* Sources */,
+				AF3D9AEE1D9BD70500B497C9 /* Frameworks */,
+				AF3D9AEF1D9BD70500B497C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF3D9AF31D9BD70500B497C9 /* PBXTargetDependency */,
+			);
+			name = "wisp-iOSTests";
+			productName = "wisp-iOSTests";
+			productReference = AF3D9AF11D9BD70500B497C9 /* wisp-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AF3D9AFB1D9BD70500B497C9 /* wisp-iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF3D9B0B1D9BD70500B497C9 /* Build configuration list for PBXNativeTarget "wisp-iOSUITests" */;
+			buildPhases = (
+				AF3D9AF81D9BD70500B497C9 /* Sources */,
+				AF3D9AF91D9BD70500B497C9 /* Frameworks */,
+				AF3D9AFA1D9BD70500B497C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF3D9AFE1D9BD70500B497C9 /* PBXTargetDependency */,
+			);
+			name = "wisp-iOSUITests";
+			productName = "wisp-iOSUITests";
+			productReference = AF3D9AFC1D9BD70500B497C9 /* wisp-iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AF3D9AD01D9BD70500B497C9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = qiniu;
+				TargetAttributes = {
+					AF3D9AD71D9BD70500B497C9 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					AF3D9AF01D9BD70500B497C9 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = AF3D9AD71D9BD70500B497C9;
+					};
+					AF3D9AFB1D9BD70500B497C9 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = AF3D9AD71D9BD70500B497C9;
+					};
+				};
+			};
+			buildConfigurationList = AF3D9AD31D9BD70500B497C9 /* Build configuration list for PBXProject "wisp-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AF3D9ACF1D9BD70500B497C9;
+			productRefGroup = AF3D9AD91D9BD70500B497C9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AF3D9AD71D9BD70500B497C9 /* wisp-iOS */,
+				AF3D9AF01D9BD70500B497C9 /* wisp-iOSTests */,
+				AF3D9AFB1D9BD70500B497C9 /* wisp-iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AF3D9AD61D9BD70500B497C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF3D9AEB1D9BD70500B497C9 /* LaunchScreen.storyboard in Resources */,
+				AF3D9AE81D9BD70500B497C9 /* Assets.xcassets in Resources */,
+				AF3D9AE61D9BD70500B497C9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF3D9AEF1D9BD70500B497C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF3D9AFA1D9BD70500B497C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		383BC695B8533097A09CED3F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-wisp-iOS/Pods-wisp-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8097D0135C108616A3DB43CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A4E8F12C175EF06D53208C44 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-wisp-iOS/Pods-wisp-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AF3D9AD41D9BD70500B497C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFAD527E1D9E27E200E65264 /* WISPSysDetector.m in Sources */,
+				AF3D9AE31D9BD70500B497C9 /* ViewController.m in Sources */,
+				AF3D9B1A1D9D331E00B497C9 /* CLLocationManager+Simulator.m in Sources */,
+				AF3D9AE01D9BD70500B497C9 /* AppDelegate.m in Sources */,
+				AF3D9ADD1D9BD70500B497C9 /* main.m in Sources */,
+				AF3D9B141D9BDD6000B497C9 /* WISPLocationMgrDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF3D9AED1D9BD70500B497C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF3D9AF61D9BD70500B497C9 /* wisp_iOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF3D9AF81D9BD70500B497C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF3D9B011D9BD70500B497C9 /* wisp_iOSUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AF3D9AF31D9BD70500B497C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF3D9AD71D9BD70500B497C9 /* wisp-iOS */;
+			targetProxy = AF3D9AF21D9BD70500B497C9 /* PBXContainerItemProxy */;
+		};
+		AF3D9AFE1D9BD70500B497C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF3D9AD71D9BD70500B497C9 /* wisp-iOS */;
+			targetProxy = AF3D9AFD1D9BD70500B497C9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AF3D9AE41D9BD70500B497C9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF3D9AE51D9BD70500B497C9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AF3D9AE91D9BD70500B497C9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF3D9AEA1D9BD70500B497C9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AF3D9B031D9BD70500B497C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AF3D9B041D9BD70500B497C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AF3D9B061D9BD70500B497C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0B90A075010BF5C4ECDAD4B /* Pods-wisp-iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "wisp-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qiniu.wisp-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AF3D9B071D9BD70500B497C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 51E1E17F51CAF55DB21AD044 /* Pods-wisp-iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "wisp-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qiniu.wisp-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		AF3D9B091D9BD70500B497C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "wisp-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qiniu.wisp-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wisp-iOS.app/wisp-iOS";
+			};
+			name = Debug;
+		};
+		AF3D9B0A1D9BD70500B497C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "wisp-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qiniu.wisp-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wisp-iOS.app/wisp-iOS";
+			};
+			name = Release;
+		};
+		AF3D9B0C1D9BD70500B497C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "wisp-iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qiniu.wisp-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "wisp-iOS";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		AF3D9B0D1D9BD70500B497C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "wisp-iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qiniu.wisp-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "wisp-iOS";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AF3D9AD31D9BD70500B497C9 /* Build configuration list for PBXProject "wisp-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF3D9B031D9BD70500B497C9 /* Debug */,
+				AF3D9B041D9BD70500B497C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF3D9B051D9BD70500B497C9 /* Build configuration list for PBXNativeTarget "wisp-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF3D9B061D9BD70500B497C9 /* Debug */,
+				AF3D9B071D9BD70500B497C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF3D9B081D9BD70500B497C9 /* Build configuration list for PBXNativeTarget "wisp-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF3D9B091D9BD70500B497C9 /* Debug */,
+				AF3D9B0A1D9BD70500B497C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF3D9B0B1D9BD70500B497C9 /* Build configuration list for PBXNativeTarget "wisp-iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF3D9B0C1D9BD70500B497C9 /* Debug */,
+				AF3D9B0D1D9BD70500B497C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AF3D9AD01D9BD70500B497C9 /* Project object */;
+}
