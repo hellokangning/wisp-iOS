@@ -9,9 +9,7 @@
 #ifndef WISPLocationMgrDelegate_h
 #define WISPLocationMgrDelegate_h
 
-@interface WISPLocationMgrDelegate : NSObject {
-    
-}
+@interface WISPLocationMgrDelegate : NSObject
 
 - (void)locate;
 

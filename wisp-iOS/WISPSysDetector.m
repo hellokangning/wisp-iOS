@@ -9,16 +9,24 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "SAMKeychain.h"
+#import <sys/utsname.h>
 #import "WISPSysDetector.h"
 
 @implementation WISPSysDetector
-- (NSString *)getSystemName {
-    NSString *systemName = [[UIDevice currentDevice] systemName];
-    return systemName;
+- (NSString *)systemName {
+    return [[UIDevice currentDevice] systemName];
 }
 
--(NSString *)getUUIDAsString
-{
+- (NSString *)machineName {
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    
+    NSString *machine = [NSString stringWithCString:systemInfo.machine
+                              encoding:NSUTF8StringEncoding];
+    return machine;
+}
+
+- (NSString *)UUIDString {
     
     NSString *appName=[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
     

@@ -20,7 +20,7 @@
     // Do any additional setup after loading the view, typically from a nib.
 
     WISPSysDetector *detector = [[WISPSysDetector alloc] init];
-    [detector getUUIDAsString];
+    [detector machineName];
 }
 
 - (void)didReceiveMemoryWarning {

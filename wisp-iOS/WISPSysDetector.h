@@ -9,12 +9,12 @@
 #ifndef WISPSysDetector_h
 #define WISPSysDetector_h
 
-#import <Foundation/Foundation.h>
+@interface WISPSysDetector : NSObject
 
-@interface WISPSysDetector : NSObject {
-}
-- (NSString *)getSystemName;
--(NSString *)getUUIDAsString;
+@property (readonly, copy) NSString *systemName;
+@property (readonly, copy) NSString *machineName;
+@property (readonly, copy) NSString *UUIDString;
+
 @end
 
 #endif /* WISPSysDetector_h */
