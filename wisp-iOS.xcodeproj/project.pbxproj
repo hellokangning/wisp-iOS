@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C7147759B2B7757CA52F488 /* libPods-wisp-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7520BAE8A587A5EEB5E2D0FC /* libPods-wisp-iOS.a */; };
+		5A683E52AD9FE8F2866720DF /* libPods-wisp-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7435B5EADB534710F2FB73EE /* libPods-wisp-iOS.a */; };
 		AF3D9ADD1D9BD70500B497C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3D9ADC1D9BD70500B497C9 /* main.m */; };
 		AF3D9AE01D9BD70500B497C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3D9ADF1D9BD70500B497C9 /* AppDelegate.m */; };
 		AF3D9AE31D9BD70500B497C9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3D9AE21D9BD70500B497C9 /* ViewController.m */; };
@@ -22,6 +23,7 @@
 		AF4EB0F81DA8961A008CDDEC /* WISPURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4EB0F71DA8961A008CDDEC /* WISPURLProtocol.m */; settings = {ASSET_TAGS = (); }; };
 		AF4EB0FB1DA89754008CDDEC /* WISPURLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4EB0FA1DA89754008CDDEC /* WISPURLModel.m */; settings = {ASSET_TAGS = (); }; };
 		AF4EB0FE1DA8A40A008CDDEC /* WISPURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4EB0FD1DA8A40A008CDDEC /* WISPURLSessionConfiguration.m */; settings = {ASSET_TAGS = (); }; };
+		AF4EB1011DA8CC56008CDDEC /* WISPURLModelMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4EB1001DA8CC56008CDDEC /* WISPURLModelMgr.m */; settings = {ASSET_TAGS = (); }; };
 		AFAD527E1D9E27E200E65264 /* WISPSysDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = AFAD527D1D9E27E200E65264 /* WISPSysDetector.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -44,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		51E1E17F51CAF55DB21AD044 /* Pods-wisp-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wisp-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-wisp-iOS/Pods-wisp-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		7435B5EADB534710F2FB73EE /* libPods-wisp-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wisp-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7520BAE8A587A5EEB5E2D0FC /* libPods-wisp-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wisp-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF3D9AD81D9BD70500B497C9 /* wisp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "wisp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF3D9ADC1D9BD70500B497C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -73,6 +76,8 @@
 		AF4EB0FA1DA89754008CDDEC /* WISPURLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WISPURLModel.m; sourceTree = "<group>"; };
 		AF4EB0FC1DA8A399008CDDEC /* WISPURLSessionConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WISPURLSessionConfiguration.h; sourceTree = "<group>"; };
 		AF4EB0FD1DA8A40A008CDDEC /* WISPURLSessionConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WISPURLSessionConfiguration.m; sourceTree = "<group>"; };
+		AF4EB0FF1DA8CC1E008CDDEC /* WISPURLModelMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WISPURLModelMgr.h; sourceTree = "<group>"; };
+		AF4EB1001DA8CC56008CDDEC /* WISPURLModelMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WISPURLModelMgr.m; sourceTree = "<group>"; };
 		AFAD527D1D9E27E200E65264 /* WISPSysDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WISPSysDetector.m; sourceTree = "<group>"; };
 		F0B90A075010BF5C4ECDAD4B /* Pods-wisp-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wisp-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wisp-iOS/Pods-wisp-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +89,7 @@
 			files = (
 				AF3D9B0F1D9BD97500B497C9 /* CoreLocation.framework in Frameworks */,
 				0C7147759B2B7757CA52F488 /* libPods-wisp-iOS.a in Frameworks */,
+				5A683E52AD9FE8F2866720DF /* libPods-wisp-iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				AF3D9B0E1D9BD97500B497C9 /* CoreLocation.framework */,
+				7435B5EADB534710F2FB73EE /* libPods-wisp-iOS.a */,
 			);
 			name = Frameworks;
 			path = "wisp-iOS";
@@ -211,6 +218,8 @@
 				AF4EB0FA1DA89754008CDDEC /* WISPURLModel.m */,
 				AF4EB0FC1DA8A399008CDDEC /* WISPURLSessionConfiguration.h */,
 				AF4EB0FD1DA8A40A008CDDEC /* WISPURLSessionConfiguration.m */,
+				AF4EB0FF1DA8CC1E008CDDEC /* WISPURLModelMgr.h */,
+				AF4EB1001DA8CC56008CDDEC /* WISPURLModelMgr.m */,
 			);
 			name = WISP;
 			path = "wisp-iOS";
@@ -404,6 +413,7 @@
 				AF3D9AE01D9BD70500B497C9 /* AppDelegate.m in Sources */,
 				AF3D9ADD1D9BD70500B497C9 /* main.m in Sources */,
 				AF4EB0FE1DA8A40A008CDDEC /* WISPURLSessionConfiguration.m in Sources */,
+				AF4EB1011DA8CC56008CDDEC /* WISPURLModelMgr.m in Sources */,
 				AF4EB0F81DA8961A008CDDEC /* WISPURLProtocol.m in Sources */,
 				AF3D9B141D9BDD6000B497C9 /* WISPLocationMgrDelegate.m in Sources */,
 			);

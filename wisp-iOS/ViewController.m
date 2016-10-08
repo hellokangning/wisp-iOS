@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "WISPSysDetector.h"
+#import "WISPURLProtocol.h"
 
 @interface ViewController ()
 
@@ -15,12 +15,26 @@
 
 @implementation ViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [WISPURLProtocol enableWithAppID:@"57f89e2e61f0c4745ffe6baf"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
-    WISPSysDetector *detector = [[WISPSysDetector alloc] init];
-    [detector machineName];
+    NSURL *url = [NSURL URLWithString:@"http://kwl.cdn.clouddn.com/5242881"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionTask * task= [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        // NSLog(@"%@", data);
+        // NSLog(@"%@", response);
+        NSLog(@"%@", error);
+    }];
+    [task resume];
 }
 
 - (void)didReceiveMemoryWarning {

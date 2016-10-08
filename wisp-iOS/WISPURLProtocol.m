@@ -16,12 +16,23 @@
 //  Copyright © 2015年 coderyi. All rights reserved.
 //
 
+#import "MSWeakTimer.h"
 #import "WISPURLProtocol.h"
 
 #import "WISPURLModel.h"
-// #import "NEHTTPModelManager.h"
 // #import "UIWindow+NEExtension.h"
 #import "WISPURLSessionConfiguration.h"
+#import "WISPURLModelMgr.h"
+
+NSString *const WISPEnabled = @"WISPEnable";
+NSString *const WISPSite = @"http://fusion-netdiag.qiniu.io";
+NSInteger const WISPSuccStatusCode = 200;
+
+static int sWISPVersion = 0;
+static int sWISPFreq = 0;
+static NSMutableArray *sWISPPermitDomains;
+static NSMutableArray *sWISPForbidDomains;
+static MSWeakTimer *sWISPTimer;
 
 @interface WISPURLProtocol ()<NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {}
@@ -34,31 +45,40 @@
 
 @implementation WISPURLProtocol
 @synthesize URLModel;
+
 #pragma mark - public
-+ (void)setEnabled:(BOOL)enabled {
-    [[NSUserDefaults standardUserDefaults] setDouble:enabled forKey:@"NetworkEyeEnable"];
++ (void)enableWithAppID:(NSString *)appID {
+    [[NSUserDefaults standardUserDefaults] setDouble:YES forKey:WISPEnabled];
     [[NSUserDefaults standardUserDefaults] synchronize];
     WISPURLSessionConfiguration * sessionConfiguration=[WISPURLSessionConfiguration defaultConfiguration];
     
-    if (enabled) {
-        
-        [NSURLProtocol registerClass:[WISPURLProtocol class]];
-        if (![sessionConfiguration isSwizzle]) {
-            [sessionConfiguration load];
-        }
-    }
-    else{
-        [NSURLProtocol unregisterClass:[WISPURLProtocol class]];
-        
-        if ([sessionConfiguration isSwizzle]) {
-            [sessionConfiguration unload];
-        }
+    [NSURLProtocol registerClass:[WISPURLProtocol class]];
+    if (![sessionConfiguration isSwizzle]) {
+        [sessionConfiguration load];
     }
     
+    // request for config
+    [self requestForConfig:appID];
+}
+
++ (void)disable {
+    [[NSUserDefaults standardUserDefaults] setDouble:NO forKey:WISPEnabled];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    WISPURLSessionConfiguration * sessionConfiguration=[WISPURLSessionConfiguration defaultConfiguration];
+    
+    [NSURLProtocol unregisterClass:[WISPURLProtocol class]];
+    if ([sessionConfiguration isSwizzle]) {
+        [sessionConfiguration unload];
+    }
+    
+    sWISPPermitDomains = nil;
+    sWISPForbidDomains = nil;
+    [sWISPTimer invalidate];
+    sWISPTimer = nil;
 }
 
 + (BOOL)isEnabled {
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"NetworkEyeEnable"] boolValue];
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:WISPEnabled] boolValue];
 }
 #pragma mark - superclass methods
 + (void)load {
@@ -71,17 +91,17 @@
         return NO;
     }
     
-    if ([NSURLProtocol propertyForKey:@"NEHTTPEye" inRequest:request] ) {
+    if ([NSURLProtocol propertyForKey:@"WISPURLProtocol" inRequest:request] ) {
         return NO;
     }
+    
     return YES;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
-    
     NSMutableURLRequest *mutableReqeust = [request mutableCopy];
     [NSURLProtocol setProperty:@YES
-                        forKey:@"NEHTTPEye"
+                        forKey:@"WISPURLProtocol"
                      inRequest:mutableReqeust];
     return [mutableReqeust copy];
 }
@@ -112,7 +132,7 @@
     if ([mimeType isEqualToString:@"application/json"]) {
         URLModel.receiveJSONData = [self responseJSONFromData:self.data];
     } else if ([mimeType isEqualToString:@"text/javascript"]) {
-        // try to parse json if it is jsonp request
+        // try to parse json if it is json request
         NSString *jsonString = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
         // formalize string
         if ([jsonString hasSuffix:@")"]) {
@@ -143,7 +163,7 @@
     flowCount=flowCount+self.response.expectedContentLength/(1024.0*1024.0);
     [[NSUserDefaults standardUserDefaults] setDouble:flowCount forKey:@"flowCount"];
     [[NSUserDefaults standardUserDefaults] synchronize];//https://github.com/coderyi/NetworkEye/pull/6
-    //[[NEHTTPModelManager defaultManager] addModel:ne_HTTPModel];
+    [[WISPURLModelMgr defaultManager] addModel:URLModel];
 }
 
 #pragma mark - NSURLConnectionDelegate
@@ -202,17 +222,67 @@ didReceiveResponse:(NSURLResponse *)response {
 }
 
 #pragma mark - Utils
++ (void)requestForConfig:(NSString *)appID {
+    sWISPForbidDomains = [NSMutableArray arrayWithCapacity:1];
+    sWISPPermitDomains = [NSMutableArray arrayWithCapacity:1];
+    
+    NSString *site = [WISPSite mutableCopy];
+    NSString *urlString = [site stringByAppendingFormat:@"/webapi/fusion/app?id=%@", appID];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *mutableReqeust = [NSMutableURLRequest requestWithURL:url];
+    [NSURLProtocol setProperty:@YES
+                        forKey:@"WISPURLProtocol"
+                     inRequest:mutableReqeust];
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionTask * task = [session dataTaskWithRequest:mutableReqeust
+                                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error != nil) {
+            return;
+        }
+        
+        NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+        NSInteger responseStatusCode = [httpResponse statusCode];
+        if (responseStatusCode == WISPSuccStatusCode) {
+            NSDictionary *resDict = [NSJSONSerialization
+                                  JSONObjectWithData:data
+                                  options:NSJSONReadingMutableContainers
+                                  error:&error];
+            if (error) {
+                return;
+            }
+            NSDictionary *appDict = [resDict valueForKey:@"app"];
+            sWISPVersion = [[appDict valueForKey:@"version"] intValue];
+            sWISPFreq = [[appDict valueForKey:@"freq"] intValue];
+            NSArray *domains = [appDict valueForKey:@"permitDomains"];
+            for (id item in domains) {
+                [sWISPPermitDomains addObject:[(NSDictionary*)item valueForKey:@"domain"]];
+            }
 
--(id)responseJSONFromData:(NSData *)data {
+            sWISPTimer = [MSWeakTimer scheduledTimerWithTimeInterval:sWISPFreq*60
+                                                              target:self
+                                                            selector:@selector(sendReport)
+                                                            userInfo:nil
+                                                             repeats:YES
+                                                       dispatchQueue:dispatch_get_main_queue()];
+        }
+    }];
+    [task resume];
+}
+
++ (void)sendReport {
+    NSLog(@"Fire");
+}
+
+- (id)responseJSONFromData:(NSData *)data {
     if(data == nil) return nil;
     NSError *error = nil;
     id returnValue = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     if(error) {
         NSLog(@"JSON Parsing Error: %@", error);
-        //https://github.com/coderyi/NetworkEye/issues/3
         return nil;
     }
-    //https://github.com/coderyi/NetworkEye/issues/1
+    
     if (!returnValue || returnValue == [NSNull null]) {
         return nil;
     }
