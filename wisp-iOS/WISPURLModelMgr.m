@@ -10,6 +10,8 @@
 #import "WISPURLModelMgr.h"
 #import "WISPURLModel.h"
 
+NSInteger const REQUEST_LIMIT = 1000;
+
 @interface WISPURLModelMgr() {
     NSMutableArray *allRequests;
 }
@@ -39,20 +41,17 @@
 }
 
 - (void)addModel:(WISPURLModel *)newModel {
-    if ([newModel.responseMIMEType isEqualToString:@"text/html"]) {
-        newModel.receiveJSONData=@"";
+    if ([allRequests count] < REQUEST_LIMIT) {
+        [allRequests addObject:newModel];
     }
-    
-    BOOL isNull = (newModel.receiveJSONData == nil);
-    if (isNull) {
-        newModel.receiveJSONData=@"";
-    }
-    
-    [allRequests addObject:newModel];
 }
 
 - (void)removeAllModels {
     [allRequests removeAllObjects];
+}
+
+- (NSMutableArray *)allModels {
+    return allRequests;
 }
 
 @end

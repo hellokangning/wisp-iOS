@@ -24,6 +24,9 @@
 		AF4EB0FB1DA89754008CDDEC /* WISPURLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4EB0FA1DA89754008CDDEC /* WISPURLModel.m */; settings = {ASSET_TAGS = (); }; };
 		AF4EB0FE1DA8A40A008CDDEC /* WISPURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4EB0FD1DA8A40A008CDDEC /* WISPURLSessionConfiguration.m */; settings = {ASSET_TAGS = (); }; };
 		AF4EB1011DA8CC56008CDDEC /* WISPURLModelMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4EB1001DA8CC56008CDDEC /* WISPURLModelMgr.m */; settings = {ASSET_TAGS = (); }; };
+		AF4EB1041DAA23DF008CDDEC /* WISPURLProtocol+report.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4EB1031DAA23DF008CDDEC /* WISPURLProtocol+report.m */; settings = {ASSET_TAGS = (); }; };
+		AF4EB1071DAA3203008CDDEC /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4EB1061DAA3203008CDDEC /* Reachability.m */; settings = {ASSET_TAGS = (); }; };
+		AF4EB10A1DAA4B38008CDDEC /* WISPReport.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4EB1091DAA4B38008CDDEC /* WISPReport.m */; settings = {ASSET_TAGS = (); }; };
 		AFAD527E1D9E27E200E65264 /* WISPSysDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = AFAD527D1D9E27E200E65264 /* WISPSysDetector.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -78,6 +81,12 @@
 		AF4EB0FD1DA8A40A008CDDEC /* WISPURLSessionConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WISPURLSessionConfiguration.m; sourceTree = "<group>"; };
 		AF4EB0FF1DA8CC1E008CDDEC /* WISPURLModelMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WISPURLModelMgr.h; sourceTree = "<group>"; };
 		AF4EB1001DA8CC56008CDDEC /* WISPURLModelMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WISPURLModelMgr.m; sourceTree = "<group>"; };
+		AF4EB1021DAA2388008CDDEC /* WISPURLProtocol+report.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WISPURLProtocol+report.h"; sourceTree = "<group>"; };
+		AF4EB1031DAA23DF008CDDEC /* WISPURLProtocol+report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WISPURLProtocol+report.m"; sourceTree = "<group>"; };
+		AF4EB1051DAA3203008CDDEC /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		AF4EB1061DAA3203008CDDEC /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		AF4EB1081DAA497C008CDDEC /* WISPReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WISPReport.h; sourceTree = "<group>"; };
+		AF4EB1091DAA4B38008CDDEC /* WISPReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WISPReport.m; sourceTree = "<group>"; };
 		AFAD527D1D9E27E200E65264 /* WISPSysDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WISPSysDetector.m; sourceTree = "<group>"; };
 		F0B90A075010BF5C4ECDAD4B /* Pods-wisp-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wisp-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wisp-iOS/Pods-wisp-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -206,6 +215,8 @@
 		AF3D9B111D9BDB7F00B497C9 /* WISP */ = {
 			isa = PBXGroup;
 			children = (
+				AF4EB1051DAA3203008CDDEC /* Reachability.h */,
+				AF4EB1061DAA3203008CDDEC /* Reachability.m */,
 				AF3D9B121D9BDCC800B497C9 /* WISPLocationMgrDelegate.h */,
 				AF3D9B131D9BDD6000B497C9 /* WISPLocationMgrDelegate.m */,
 				AF3D9B181D9D32F600B497C9 /* CLLocationManager+Simulator.h */,
@@ -220,6 +231,10 @@
 				AF4EB0FD1DA8A40A008CDDEC /* WISPURLSessionConfiguration.m */,
 				AF4EB0FF1DA8CC1E008CDDEC /* WISPURLModelMgr.h */,
 				AF4EB1001DA8CC56008CDDEC /* WISPURLModelMgr.m */,
+				AF4EB1021DAA2388008CDDEC /* WISPURLProtocol+report.h */,
+				AF4EB1031DAA23DF008CDDEC /* WISPURLProtocol+report.m */,
+				AF4EB1081DAA497C008CDDEC /* WISPReport.h */,
+				AF4EB1091DAA4B38008CDDEC /* WISPReport.m */,
 			);
 			name = WISP;
 			path = "wisp-iOS";
@@ -412,9 +427,12 @@
 				AF3D9B1A1D9D331E00B497C9 /* CLLocationManager+Simulator.m in Sources */,
 				AF3D9AE01D9BD70500B497C9 /* AppDelegate.m in Sources */,
 				AF3D9ADD1D9BD70500B497C9 /* main.m in Sources */,
+				AF4EB10A1DAA4B38008CDDEC /* WISPReport.m in Sources */,
 				AF4EB0FE1DA8A40A008CDDEC /* WISPURLSessionConfiguration.m in Sources */,
 				AF4EB1011DA8CC56008CDDEC /* WISPURLModelMgr.m in Sources */,
 				AF4EB0F81DA8961A008CDDEC /* WISPURLProtocol.m in Sources */,
+				AF4EB1041DAA23DF008CDDEC /* WISPURLProtocol+report.m in Sources */,
+				AF4EB1071DAA3203008CDDEC /* Reachability.m in Sources */,
 				AF3D9B141D9BDD6000B497C9 /* WISPLocationMgrDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,6 +576,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "wisp-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.qiniu.wisp-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -570,6 +589,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "wisp-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.qiniu.wisp-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";

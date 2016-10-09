@@ -25,6 +25,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)sendLargeRequest:(id)sender {
     NSURL *url = [NSURL URLWithString:@"http://kwl.cdn.clouddn.com/5242881"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSession *session = [NSURLSession sharedSession];
@@ -37,9 +45,15 @@
     [task resume];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)sendTinyRequest:(id)sender {
+    NSURL *url = [NSURL URLWithString:@"http://qint.cdn.clouddn.com/512001"];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url cachePolicy:NSURLRequestReloadRevalidatingCacheData timeoutInterval:10];
+    //连接服务器
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        if(connectionError || data == nil) {
+            NSLog(@"%@", connectionError);
+        }
+    }];
 }
 
 @end

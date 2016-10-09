@@ -12,8 +12,12 @@
 @interface WISPSysDetector : NSObject
 
 @property (readonly, copy) NSString *systemName;
+@property (readonly, copy) NSString *systemVersion;
 @property (readonly, copy) NSString *machineName;
 @property (readonly, copy) NSString *UUIDString;
+@property (readonly, copy) NSString *netStatus;
+
++ (WISPSysDetector*)defaultDetector;
 
 @end
 

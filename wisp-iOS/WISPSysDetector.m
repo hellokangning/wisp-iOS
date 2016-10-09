@@ -11,10 +11,26 @@
 #import "SAMKeychain.h"
 #import <sys/utsname.h>
 #import "WISPSysDetector.h"
+#import "Reachability.h"
 
 @implementation WISPSysDetector
+
++ (WISPSysDetector *)defaultDetector {
+    static WISPSysDetector *staticDetector;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        staticDetector = [[WISPSysDetector alloc] init];
+    });
+    
+    return staticDetector;
+}
+
 - (NSString *)systemName {
     return [[UIDevice currentDevice] systemName];
+}
+
+- (NSString *)systemVersion {
+    return [[UIDevice currentDevice] systemVersion];
 }
 
 - (NSString *)machineName {
@@ -38,6 +54,23 @@
     }
     
     return strApplicationUUID;
+}
+
+- (NSString *)netStatus {
+    Reachability *reach = [Reachability reachabilityWithHostName:@"My Iphone"];
+    switch ([reach currentReachabilityStatus]) {
+        case ReachableViaWiFi:
+            return @"WIFI";
+            break;
+        case ReachableViaWWAN:
+            return @"MOBILE";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
 }
 
 @end

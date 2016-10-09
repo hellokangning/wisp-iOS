@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
-
+- (IBAction)sendLargeRequest:(id)sender;
+- (IBAction)sendTinyRequest:(id)sender;
 @end
 

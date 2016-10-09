@@ -18,6 +18,7 @@
 
 #import "MSWeakTimer.h"
 #import "WISPURLProtocol.h"
+#import "WISPURLProtocol+report.h"
 
 #import "WISPURLModel.h"
 // #import "UIWindow+NEExtension.h"
@@ -30,6 +31,7 @@ NSInteger const WISPSuccStatusCode = 200;
 
 static int sWISPVersion = 0;
 static int sWISPFreq = 0;
+static NSString *sAppID;
 static NSMutableArray *sWISPPermitDomains;
 static NSMutableArray *sWISPForbidDomains;
 static MSWeakTimer *sWISPTimer;
@@ -38,8 +40,6 @@ static MSWeakTimer *sWISPTimer;
 {}
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSURLResponse *response;
-@property (nonatomic, strong) NSMutableData *data;
-@property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic,strong) WISPURLModel *URLModel;
 @end
 
@@ -47,7 +47,13 @@ static MSWeakTimer *sWISPTimer;
 @synthesize URLModel;
 
 #pragma mark - public
++ (NSString*)appID {
+    return sAppID;
+}
+
 + (void)enableWithAppID:(NSString *)appID {
+    sAppID = [[NSString alloc] initWithString:appID];
+    
     [[NSUserDefaults standardUserDefaults] setDouble:YES forKey:WISPEnabled];
     [[NSUserDefaults standardUserDefaults] synchronize];
     WISPURLSessionConfiguration * sessionConfiguration=[WISPURLSessionConfiguration defaultConfiguration];
@@ -75,6 +81,7 @@ static MSWeakTimer *sWISPTimer;
     sWISPForbidDomains = nil;
     [sWISPTimer invalidate];
     sWISPTimer = nil;
+    sAppID = nil;
 }
 
 + (BOOL)isEnabled {
@@ -95,7 +102,24 @@ static MSWeakTimer *sWISPTimer;
         return NO;
     }
     
-    return YES;
+    NSString *host = request.URL.host;
+    for (NSString *domain in sWISPPermitDomains) {
+        if ([domain hasPrefix:@"*"]) { // 泛域名
+            // 去掉开头星号
+            NSString *suffixDomain = [domain substringFromIndex:1];
+            if ([host hasSuffix:suffixDomain]) {
+                return YES;
+            }
+        }
+        else {  // 域名
+            if ([host isEqualToString:domain]) {
+                return YES;
+            }
+        }
+
+    }
+    
+    return NO;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
@@ -107,69 +131,35 @@ static MSWeakTimer *sWISPTimer;
 }
 
 - (void)startLoading {
-    self.startDate = [NSDate date];
-    self.data = [NSMutableData data];
     
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     self.connection = [[NSURLConnection alloc] initWithRequest:[[self class] canonicalRequestForRequest:self.request] delegate:self startImmediately:YES];
 #pragma clang diagnostic pop
     
-    URLModel=[[WISPURLModel alloc] init];
-    URLModel.request=self.request;
-    URLModel.startDateString=[self stringWithDate:[NSDate date]];
+    URLModel = [[WISPURLModel alloc] init];
+    URLModel.request = self.request;
+    URLModel.startTimestamp = [[NSDate date] timeIntervalSince1970] * 1000;
+    URLModel.responseTimeStamp = -1;
+    URLModel.responseDataLength = 0;
     
-    NSTimeInterval myID=[[NSDate date] timeIntervalSince1970];
-    double randomNum=((double)(arc4random() % 100))/10000;
-    URLModel.myID=myID+randomNum;
+    NSTimeInterval myID = [[NSDate date] timeIntervalSince1970];
+    double randomNum = ((double)(arc4random() % 100))/10000;
+    URLModel.myID = myID + randomNum;
 }
 
 - (void)stopLoading {
     [self.connection cancel];
-    URLModel.response=(NSHTTPURLResponse *)self.response;
-    URLModel.endDateString=[self stringWithDate:[NSDate date]];
-    NSString *mimeType = self.response.MIMEType;
-    if ([mimeType isEqualToString:@"application/json"]) {
-        URLModel.receiveJSONData = [self responseJSONFromData:self.data];
-    } else if ([mimeType isEqualToString:@"text/javascript"]) {
-        // try to parse json if it is json request
-        NSString *jsonString = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
-        // formalize string
-        if ([jsonString hasSuffix:@")"]) {
-            jsonString = [NSString stringWithFormat:@"%@;", jsonString];
-        }
-        if ([jsonString hasSuffix:@");"]) {
-            NSRange range = [jsonString rangeOfString:@"("];
-            if (range.location != NSNotFound) {
-                range.location++;
-                range.length = [jsonString length] - range.location - 2; // removes parens and trailing semicolon
-                jsonString = [jsonString substringWithRange:range];
-                NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-                URLModel.receiveJSONData = [self responseJSONFromData:jsonData];
-            }
-        }
-        
-    }
-    else if ([mimeType isEqualToString:@"application/xml"] ||[mimeType isEqualToString:@"text/xml"]){
-        NSString *xmlString = [[NSString alloc]initWithData:self.data encoding:NSUTF8StringEncoding];
-        if (xmlString && xmlString.length>0) {
-            URLModel.receiveJSONData = xmlString;//example http://webservice.webxml.com.cn/webservices/qqOnlineWebService.asmx/qqCheckOnline?qqCode=2121
-        }
-    }
-    double flowCount=[[[NSUserDefaults standardUserDefaults] objectForKey:@"flowCount"] doubleValue];
-    if (!flowCount) {
-        flowCount=0.0;
-    }
-    flowCount=flowCount+self.response.expectedContentLength/(1024.0*1024.0);
-    [[NSUserDefaults standardUserDefaults] setDouble:flowCount forKey:@"flowCount"];
-    [[NSUserDefaults standardUserDefaults] synchronize];//https://github.com/coderyi/NetworkEye/pull/6
-    [[WISPURLModelMgr defaultManager] addModel:URLModel];
+    URLModel.response = (NSHTTPURLResponse *)self.response;
 }
 
 #pragma mark - NSURLConnectionDelegate
 
 - (void)connection:(NSURLConnection *)connection
   didFailWithError:(NSError *)error {
+    URLModel.responseStatusCode = error.code;
+    URLModel.errMsg = error.localizedDescription;
+    [[WISPURLModelMgr defaultManager] addModel:URLModel];
     [[self client] URLProtocol:self didFailWithError:error];
 }
 
@@ -188,7 +178,9 @@ didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
 }
 
 #pragma mark - NSURLConnectionDataDelegate
-- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
+- (NSURLRequest *)connection:(NSURLConnection *)connection
+             willSendRequest:(NSURLRequest *)request
+            redirectResponse:(NSURLResponse *)response {
     if (response != nil){
         self.response = response;
         [[self client] URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];
@@ -200,16 +192,17 @@ didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
 didReceiveResponse:(NSURLResponse *)response {
     [[self client] URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
     self.response = response;
+    URLModel.responseTimeStamp = [[NSDate date] timeIntervalSince1970] * 1000;
 }
 
+// 一次请求数据，会多次触发这个函数
+// 所以endTimeStamp和responseDataLength也会多次更新
 - (void)connection:(NSURLConnection *)connection
     didReceiveData:(NSData *)data {
-    NSString *mimeType = self.response.MIMEType;
-    if ([mimeType isEqualToString:@"application/json"]) {
-        // TODO:
-    }
+    URLModel.endTimestamp = [[NSDate date] timeIntervalSince1970] * 1000;
+    URLModel.responseDataLength = data.length;
+    
     [[self client] URLProtocol:self didLoadData:data];
-    [self.data appendData:data];
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
@@ -218,6 +211,8 @@ didReceiveResponse:(NSURLResponse *)response {
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    [[WISPURLModelMgr defaultManager] addModel:URLModel];
+    
     [[self client] URLProtocolDidFinishLoading:self];
 }
 
@@ -259,7 +254,7 @@ didReceiveResponse:(NSURLResponse *)response {
                 [sWISPPermitDomains addObject:[(NSDictionary*)item valueForKey:@"domain"]];
             }
 
-            sWISPTimer = [MSWeakTimer scheduledTimerWithTimeInterval:sWISPFreq*60
+            sWISPTimer = [MSWeakTimer scheduledTimerWithTimeInterval:sWISPFreq*5
                                                               target:self
                                                             selector:@selector(sendReport)
                                                             userInfo:nil
@@ -270,9 +265,6 @@ didReceiveResponse:(NSURLResponse *)response {
     [task resume];
 }
 
-+ (void)sendReport {
-    NSLog(@"Fire");
-}
 
 - (id)responseJSONFromData:(NSData *)data {
     if(data == nil) return nil;
@@ -290,21 +282,6 @@ didReceiveResponse:(NSURLResponse *)response {
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:returnValue options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
     return jsonString;
-}
-
-- (NSString *)stringWithDate:(NSDate *)date {
-    NSString *destDateString = [[WISPURLProtocol defaultDateFormatter] stringFromDate:date];
-    return destDateString;
-}
-
-+ (NSDateFormatter *)defaultDateFormatter {
-    static NSDateFormatter *staticDateFormatter;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        staticDateFormatter=[[NSDateFormatter alloc] init];
-        [staticDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];//zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
-    });
-    return staticDateFormatter;
 }
 
 @end

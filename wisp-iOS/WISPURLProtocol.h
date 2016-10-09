@@ -10,9 +10,12 @@
 #define WISPURLProtocol_h
 
 @interface WISPURLProtocol : NSURLProtocol
+
 + (void)enableWithAppID:(NSString*)appID;
 + (void)disable;
 + (BOOL)isEnabled;
++ (NSString *)appID;
+
 @end
 
 #endif /* WISPURLProtocol_h */

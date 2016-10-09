@@ -15,6 +15,7 @@
 + (WISPURLModelMgr *)defaultManager;
 - (void)addModel:(WISPURLModel*)newModel;
 - (void)removeAllModels;
+- (NSMutableArray *)allModels;
 @end
 
 

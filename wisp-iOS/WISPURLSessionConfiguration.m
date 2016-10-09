@@ -17,8 +17,9 @@
     static WISPURLSessionConfiguration *staticConfiguration;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        staticConfiguration=[[WISPURLSessionConfiguration alloc] init];
+        staticConfiguration = [[WISPURLSessionConfiguration alloc] init];
     });
+    
     return staticConfiguration;
 }
 
