@@ -200,7 +200,7 @@ didReceiveResponse:(NSURLResponse *)response {
 - (void)connection:(NSURLConnection *)connection
     didReceiveData:(NSData *)data {
     URLModel.endTimestamp = [[NSDate date] timeIntervalSince1970] * 1000;
-    URLModel.responseDataLength = data.length;
+    URLModel.responseDataLength += data.length;
     
     [[self client] URLProtocol:self didLoadData:data];
 }
