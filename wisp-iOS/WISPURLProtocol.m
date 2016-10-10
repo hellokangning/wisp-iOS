@@ -26,7 +26,7 @@
 #import "WISPURLModelMgr.h"
 
 NSString *const WISPEnabled = @"WISPEnable";
-NSString *const WISPSite = @"http://fusion-netdiag.qiniu.io";
+NSString *const NetDiagSite = @"http://fusion-netdiag.qiniu.io";
 NSInteger const WISPSuccStatusCode = 200;
 
 static int sWISPVersion = 0;
@@ -221,16 +221,17 @@ didReceiveResponse:(NSURLResponse *)response {
     sWISPForbidDomains = [NSMutableArray arrayWithCapacity:1];
     sWISPPermitDomains = [NSMutableArray arrayWithCapacity:1];
     
-    NSString *site = [WISPSite mutableCopy];
+    NSString *site = [NetDiagSite mutableCopy];
     NSString *urlString = [site stringByAppendingFormat:@"/webapi/fusion/app?id=%@", appID];
     NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *mutableReqeust = [NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest *mutableRequest = [NSMutableURLRequest requestWithURL:url];
+    [mutableRequest setHTTPMethod:@"GET"];
     [NSURLProtocol setProperty:@YES
                         forKey:@"WISPURLProtocol"
-                     inRequest:mutableReqeust];
+                     inRequest:mutableRequest];
     NSURLSession *session = [NSURLSession sharedSession];
     
-    NSURLSessionTask * task = [session dataTaskWithRequest:mutableReqeust
+    NSURLSessionTask * task = [session dataTaskWithRequest:mutableRequest
                                          completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error != nil) {
             return;

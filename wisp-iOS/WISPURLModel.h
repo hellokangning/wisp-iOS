@@ -26,7 +26,7 @@
 
 
 //response
-@property (nonatomic, assign) NSInteger responseStatusCode;
+@property (nonatomic, assign) int responseStatusCode;
 @property (nonatomic, assign) SInt64 responseTimeStamp;
 @property (nonatomic, assign) NSInteger responseDataLength;
 
