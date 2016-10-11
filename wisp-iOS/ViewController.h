@@ -11,5 +11,6 @@
 @interface ViewController : UIViewController
 - (IBAction)sendLargeRequest:(id)sender;
 - (IBAction)sendTinyRequest:(id)sender;
+- (IBAction)sendBadRequest:(id)sender;
 @end
 

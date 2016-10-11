@@ -157,7 +157,7 @@ static MSWeakTimer *sWISPTimer;
 
 - (void)connection:(NSURLConnection *)connection
   didFailWithError:(NSError *)error {
-    URLModel.responseStatusCode = error.code;
+    URLModel.responseStatusCode = (int)error.code;
     URLModel.errMsg = error.localizedDescription;
     [[WISPURLModelMgr defaultManager] addModel:URLModel];
     [[self client] URLProtocol:self didFailWithError:error];
