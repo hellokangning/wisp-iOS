@@ -42,9 +42,10 @@ NSString *const WISPSite = @"https://wisp.qiniu.io";
         NSString *url = req.requestURLString;
         NSString *domain = req.requestDomain;
         UInt64 sendTime = req.startTimestamp;
-        SInt64 firstResTime = req.responseTimeStamp - sendTime;
+        
+        SInt64 firstResTime = (req.responseTimeStamp > sendTime) ? (req.responseTimeStamp - sendTime) : -1;
         SInt64 dataLen = req.responseDataLength;
-        SInt64 dlTime = req.endTimestamp - req.startTimestamp;
+        SInt64 dlTime = (req.endTimestamp > sendTime) ? (req.endTimestamp - sendTime) : -1;
         int statusCode = req.responseStatusCode;
         NSString *msg = req.errMsg;
         if (msg == nil) {
@@ -113,7 +114,7 @@ NSString *const WISPSite = @"https://wisp.qiniu.io";
                                                  NSLog(@"send report failed: %@", error.localizedDescription);
                                              }
                                              else {
-                                                NSLog(@"send report succ: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                                                NSLog(@"send report succ, data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
                                              }
                                          }];
     [task resume];

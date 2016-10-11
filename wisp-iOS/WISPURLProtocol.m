@@ -134,13 +134,15 @@ static MSWeakTimer *sWISPTimer;
     
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    self.connection = [[NSURLConnection alloc] initWithRequest:[[self class] canonicalRequestForRequest:self.request] delegate:self startImmediately:YES];
+    self.connection = [[NSURLConnection alloc] initWithRequest:[[self class] canonicalRequestForRequest:self.request]
+                                                      delegate:self
+                                              startImmediately:YES];
 #pragma clang diagnostic pop
     
     URLModel = [[WISPURLModel alloc] init];
     URLModel.request = self.request;
     URLModel.startTimestamp = [[NSDate date] timeIntervalSince1970] * 1000;
-    URLModel.responseTimeStamp = -1;
+    URLModel.responseTimeStamp = 0;
     URLModel.responseDataLength = 0;
     
     NSTimeInterval myID = [[NSDate date] timeIntervalSince1970];
@@ -264,25 +266,6 @@ didReceiveResponse:(NSURLResponse *)response {
         }
     }];
     [task resume];
-}
-
-
-- (id)responseJSONFromData:(NSData *)data {
-    if(data == nil) return nil;
-    NSError *error = nil;
-    id returnValue = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    if(error) {
-        NSLog(@"JSON Parsing Error: %@", error);
-        return nil;
-    }
-    
-    if (!returnValue || returnValue == [NSNull null]) {
-        return nil;
-    }
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:returnValue options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-    return jsonString;
 }
 
 @end
