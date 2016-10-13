@@ -15,12 +15,13 @@
 - (void)setRequest:(NSURLRequest *)newRequest {
     request = newRequest;
     
-    self.requestURLString = [request valueForHTTPHeaderField:@"OrigURL"];
+    self.requestURLString = [NSURLProtocol propertyForKey:@"WISPOrigURL" inRequest:request];
     self.requestDomain = [request valueForHTTPHeaderField:@"Host"];
-    
     
     self.requestTimeoutInterval = [[NSString stringWithFormat:@"%.1lf", request.timeoutInterval] doubleValue];
     self.requestHTTPMethod = request.HTTPMethod;
+    
+    self.dnsTime = [[NSURLProtocol propertyForKey:@"WISPDNSTime" inRequest:request] longLongValue];
 }
 
 - (void)setResponse:(NSHTTPURLResponse *)newResponse {

@@ -47,7 +47,9 @@
 }
 
 - (IBAction)sendTinyRequest:(id)sender {
+//    NSURL *url = [NSURL URLWithString:@"https://ws.qnssl.com/512001"];
     NSURL *url = [NSURL URLWithString:@"http://qint.cdn.clouddn.com/512001"];
+    
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url cachePolicy:NSURLRequestReloadRevalidatingCacheData timeoutInterval:10];
     //连接服务器
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {

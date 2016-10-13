@@ -42,6 +42,7 @@ NSString *const WISPSite = @"https://wisp.qiniu.io";
         NSString *url = req.requestURLString;
         NSString *domain = req.requestDomain;
         UInt64 sendTime = req.startTimestamp;
+        UInt64 dnsTime = req.dnsTime;
         
         SInt64 firstResTime = (req.responseTimeStamp > sendTime) ? (req.responseTimeStamp - sendTime) : -1;
         SInt64 dataLen = req.responseDataLength;
@@ -67,6 +68,7 @@ NSString *const WISPSite = @"https://wisp.qiniu.io";
                                  @"Url": url,
                                  @"Domain": domain,
                                  @"Stime": [NSNumber numberWithLongLong:sendTime],
+                                 @"DnsTime": [NSNumber numberWithLongLong:dnsTime],
                                  @"FirstPacketTime": [NSNumber numberWithLongLong:firstResTime],
                                  @"Size": [NSNumber numberWithLongLong:dataLen],
                                  @"TotalTime": [NSNumber numberWithLongLong:dlTime],
