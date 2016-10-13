@@ -49,11 +49,11 @@ NSString *const WISPSite = @"https://wisp.qiniu.io";
         int statusCode = req.responseStatusCode;
         NSString *msg = req.errMsg;
         if (msg == nil) {
-            msg = @"success";
+            msg = @"";
         }
        
         BOOL reachable = YES;
-        if (statusCode != 200 || ![msg isEqualToString:@"success"])
+        if (statusCode != 200 || ![msg isEqualToString:@""])
             reachable = NO;
         
         NSDictionary *report = @{

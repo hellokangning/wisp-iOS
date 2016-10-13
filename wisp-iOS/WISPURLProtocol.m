@@ -17,11 +17,13 @@
 //
 
 #import "MSWeakTimer.h"
+#import "QNNetworkInfo.h"
+#import "QNResolver.h"
+#import "QNDnsManager.h"
+
 #import "WISPURLProtocol.h"
 #import "WISPURLProtocol+report.h"
-
 #import "WISPURLModel.h"
-// #import "UIWindow+NEExtension.h"
 #import "WISPURLSessionConfiguration.h"
 #import "WISPURLModelMgr.h"
 
@@ -123,18 +125,30 @@ static MSWeakTimer *sWISPTimer;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
-    NSMutableURLRequest *mutableReqeust = [request mutableCopy];
+    NSMutableURLRequest *mutableRequest = [request mutableCopy];
+    [mutableRequest setValue:mutableRequest.URL.host forHTTPHeaderField:@"Host"];
+    [mutableRequest setValue:mutableRequest.URL.absoluteString forHTTPHeaderField:@"OrigURL"];
     [NSURLProtocol setProperty:@YES
                         forKey:@"WISPURLProtocol"
-                     inRequest:mutableReqeust];
-    return [mutableReqeust copy];
+                     inRequest:mutableRequest];
+    
+    if ([mutableRequest.URL.scheme isEqualToString:@"http"]) {
+        NSMutableArray *resolvers = [[NSMutableArray alloc] init];
+        [resolvers addObject:[QNResolver systemResolver]];
+        [resolvers addObject:[[QNResolver alloc] initWithAddress:@"8.8.8.8"]];
+        QNDnsManager *dns = [[QNDnsManager alloc] init:resolvers networkInfo:[QNNetworkInfo normal]];
+        NSURL *replacedURL = [dns queryAndReplaceWithIP:mutableRequest.URL];
+        mutableRequest.URL = replacedURL;
+    }
+    
+    return [mutableRequest copy];
 }
 
 - (void)startLoading {
     
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    self.connection = [[NSURLConnection alloc] initWithRequest:[[self class] canonicalRequestForRequest:self.request]
+    self.connection = [[NSURLConnection alloc] initWithRequest:self.request
                                                       delegate:self
                                               startImmediately:YES];
 #pragma clang diagnostic pop

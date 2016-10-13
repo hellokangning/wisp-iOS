@@ -15,8 +15,8 @@
 - (void)setRequest:(NSURLRequest *)newRequest {
     request = newRequest;
     
-    self.requestURLString=[request.URL absoluteString];
-    self.requestDomain = request.URL.host;
+    self.requestURLString = [request valueForHTTPHeaderField:@"OrigURL"];
+    self.requestDomain = [request valueForHTTPHeaderField:@"Host"];
     
     
     self.requestTimeoutInterval = [[NSString stringWithFormat:@"%.1lf", request.timeoutInterval] doubleValue];

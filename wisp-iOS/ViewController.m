@@ -61,7 +61,8 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    NSURL *URL = [NSURL URLWithString:@"http://wisp.qiniu.io/webapi/fusion/encodingLogs"];
+   // NSURL *URL = [NSURL URLWithString:@"http://wisp.qiniu.io/webapi/fusion/encodingLogs"];
+    NSURL *URL = [NSURL URLWithString:@"https://oerugfbxb.qnssl.com/wp-content/themes/Earthshaker/images/menu/reports.png"];
    // NSURL *URL = [NSURL URLWithString:@"http://www.notexistsite.com/download.zip"];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
