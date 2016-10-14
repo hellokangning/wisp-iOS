@@ -22,6 +22,7 @@
     self.requestHTTPMethod = request.HTTPMethod;
     
     self.dnsTime = [[NSURLProtocol propertyForKey:@"WISPDNSTime" inRequest:request] longLongValue];
+    self.requestHostIP = [NSURLProtocol propertyForKey:@"WISPHostIP" inRequest:request];
 }
 
 - (void)setResponse:(NSHTTPURLResponse *)newResponse {

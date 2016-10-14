@@ -41,6 +41,7 @@ NSString *const WISPSite = @"https://wisp.qiniu.io";
     for (WISPURLModel *req in requests) {
         NSString *url = req.requestURLString;
         NSString *domain = req.requestDomain;
+        NSString *hostIP = req.requestHostIP;
         UInt64 sendTime = req.startTimestamp;
         UInt64 dnsTime = req.dnsTime;
         
@@ -67,6 +68,7 @@ NSString *const WISPSite = @"https://wisp.qiniu.io";
                                  @"AppID": appID,
                                  @"Url": url,
                                  @"Domain": domain,
+                                 @"HostIp": hostIP,
                                  @"Stime": [NSNumber numberWithLongLong:sendTime],
                                  @"DnsTime": [NSNumber numberWithLongLong:dnsTime],
                                  @"FirstPacketTime": [NSNumber numberWithLongLong:firstResTime],

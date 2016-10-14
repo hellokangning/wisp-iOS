@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSString *requestDomain;
 @property (nonatomic, assign) double requestTimeoutInterval;
 @property (nonatomic, nullable, strong) NSString *requestHTTPMethod;
+@property (nonatomic, strong) NSString *requestHostIP;
 
 //response
 @property (nonatomic, assign) int responseStatusCode;

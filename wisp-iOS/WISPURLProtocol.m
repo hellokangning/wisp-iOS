@@ -137,13 +137,16 @@ static MSWeakTimer *sWISPTimer;
     if ([mutableRequest.URL.scheme isEqualToString:@"http"]) {
         NSMutableArray *resolvers = [[NSMutableArray alloc] init];
         [resolvers addObject:[QNResolver systemResolver]];
-        [resolvers addObject:[[QNResolver alloc] initWithAddress:@"8.8.8.8"]];
+        [resolvers addObject:[[QNResolver alloc] initWithAddress:@"119.29.29.29"]];
         QNDnsManager *dns = [[QNDnsManager alloc] init:resolvers networkInfo:[QNNetworkInfo normal]];
         UInt64 dnsStartTime = [[NSDate date] timeIntervalSince1970] * 1000;
         NSURL *replacedURL = [dns queryAndReplaceWithIP:mutableRequest.URL];
         UInt64 dnsEndTime = [[NSDate date] timeIntervalSince1970] * 1000;
         [NSURLProtocol setProperty:[NSString stringWithFormat:@"%llu", dnsEndTime - dnsStartTime]
                             forKey:@"WISPDNSTime"
+                         inRequest:mutableRequest];
+        [NSURLProtocol setProperty:replacedURL.host
+                            forKey:@"WISPHostIP"
                          inRequest:mutableRequest];
         mutableRequest.URL = replacedURL;
     }
