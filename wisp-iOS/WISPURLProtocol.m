@@ -106,7 +106,7 @@ static MSWeakTimer *sWISPTimer;
     
     NSString *host = request.URL.host;
     for (NSString *domain in sWISPPermitDomains) {
-        if ([domain hasPrefix:@"*"]) { // 泛域名
+        if ([domain hasPrefix:@"*."]) { // 泛域名
             // 去掉开头星号
             NSString *suffixDomain = [domain substringFromIndex:1];
             if ([host hasSuffix:suffixDomain]) {
