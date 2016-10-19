@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CommonCrypto/CommonDigest.h>
+
 #import "WISPSysDetector.h"
 #import "WISPURLProtocol.h"
 #import "WISPURLProtocol+report.h"
 #import "WISPSysDetector.h"
 #import "WISPURLModelMgr.h"
 #import "WISPURLModel.h"
-//#import "WISPReport.h"
 #import "NSData+GZIP.h"
 
 NSString *const WISPSite = @"https://wisp.qiniu.io";
@@ -95,9 +96,8 @@ NSString *const WISPSite = @"https://wisp.qiniu.io";
     
     NSData *gzippedData = [jsonData gzippedData];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)gzippedData.length];
-    NSString *site = [WISPSite mutableCopy];
-    NSString *urlString = [site stringByAppendingFormat:@"/webapi/fusion/encodingLogs"];
-    NSURL *url = [NSURL URLWithString:urlString];
+   
+    NSURL *url = [self reportURL];
     NSMutableURLRequest *mutableRequest = [NSMutableURLRequest requestWithURL:url];
     [mutableRequest setHTTPMethod:@"POST"];
     [mutableRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -124,6 +124,31 @@ NSString *const WISPSite = @"https://wisp.qiniu.io";
     [task resume];
   
     [[WISPURLModelMgr defaultManager] removeAllModels];
+}
+
++ (NSURL*)reportURL {
+    NSString *site = [WISPSite mutableCopy];
+    NSString *path = @"/webapi/fusion/encodingLogs";
+    UInt64 timeStamp = [[NSDate date] timeIntervalSince1970] * 1000;
+    
+    NSString *tobeSigned = [path stringByAppendingFormat:@"%@%llu%@", [self appID], timeStamp, [self appKey]];
+    NSString *sign = [self md5:tobeSigned];
+    NSString *urlString = [site stringByAppendingFormat:@"%@?id=%@&time=%llu&sign=%@", path, [self appID], timeStamp, sign];
+    NSURL *url = [NSURL URLWithString:urlString];
+    return url;
+}
+
++ (NSString*)md5:(NSString*)input {
+    const char *cStr = [input UTF8String];
+    unsigned char digest[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(cStr, (int)strlen(cStr), digest); // This is the md5 call
+    
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", digest[i]];
+    
+    return  output;
 }
 
 @end

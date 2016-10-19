@@ -34,6 +34,7 @@ NSInteger const WISPSuccStatusCode = 200;
 static int sWISPVersion = 0;
 static int sWISPFreq = 0;
 static NSString *sAppID;
+static NSString *sAppKey;
 static NSMutableArray *sWISPPermitDomains;
 static NSMutableArray *sWISPForbidDomains;
 static MSWeakTimer *sWISPTimer;
@@ -53,8 +54,14 @@ static MSWeakTimer *sWISPTimer;
     return sAppID;
 }
 
-+ (void)enableWithAppID:(NSString *)appID {
++ (NSString*)appKey {
+    return sAppKey;
+}
+
++ (void)enableWithAppID:(NSString *)appID
+              andAppKey:(NSString *)appKey {
     sAppID = [[NSString alloc] initWithString:appID];
+    sAppKey = [[NSString alloc] initWithString:appKey];
     
     [[NSUserDefaults standardUserDefaults] setDouble:YES forKey:WISPEnabled];
     [[NSUserDefaults standardUserDefaults] synchronize];

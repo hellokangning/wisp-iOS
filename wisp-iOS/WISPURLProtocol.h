@@ -11,10 +11,12 @@
 
 @interface WISPURLProtocol : NSURLProtocol
 
-+ (void)enableWithAppID:(NSString*)appID;
++ (void)enableWithAppID:(NSString*)appID
+              andAppKey:(NSString*)appKey;
 + (void)disable;
 + (BOOL)isEnabled;
-+ (NSString *)appID;
++ (NSString*)appID;
++ (NSString*)appKey;
 
 @end
 

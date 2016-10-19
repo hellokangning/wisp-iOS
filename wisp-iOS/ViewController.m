@@ -19,7 +19,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [WISPURLProtocol enableWithAppID:@"57f89e2e61f0c4745ffe6baf"];
+    [WISPURLProtocol enableWithAppID:@"57f89e2e61f0c4745ffe6baf"
+                           andAppKey:@"57f89e2e4cf0836f0a60a061"];
 }
 
 - (void)viewDidLoad {
