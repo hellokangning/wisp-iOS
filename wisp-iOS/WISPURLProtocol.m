@@ -7,15 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
-//
-//  NEHTTPEye.m
-//  NetworkEye
-//
-//  Created by coderyi on 15/11/3.
-//  Copyright © 2015年 coderyi. All rights reserved.
-//
-
 #import "MSWeakTimer.h"
 #import "QNNetworkInfo.h"
 #import "QNResolver.h"

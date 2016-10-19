@@ -9,6 +9,16 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>wisp-objc-sdk.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>wisp.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +33,16 @@
 			<true/>
 		</dict>
 		<key>AF3D9AFB1D9BD70500B497C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AFF1A2B41DB78D800017B45B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AFF1A2DC1DB790650017B45B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

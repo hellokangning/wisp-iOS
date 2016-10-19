@@ -18,6 +18,7 @@
 #import "NSData+GZIP.h"
 
 NSString *const WISPSite = @"https://wisp.qiniu.io";
+NSString *const WISPVersion = @"1.0";
 
 @implementation WISPURLProtocol (report)
 
@@ -36,7 +37,7 @@ NSString *const WISPSite = @"https://wisp.qiniu.io";
     NSString *deviceID = [sysDetector UUIDString];
     NSString *netStatus = [sysDetector netStatus];
     
-    NSString *wispVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     
     NSString *appID = [self appID];
     for (WISPURLModel *req in requests) {
@@ -65,7 +66,8 @@ NSString *const WISPSite = @"https://wisp.qiniu.io";
                                  @"DeviceProvider": machineName,
                                  @"DeviceID": deviceID,
                                  @"NetType": netStatus,
-                                 @"Version": wispVersion,
+                                 @"Version": WISPVersion,
+                                 @"AppVersion": appVersion,
                                  @"AppID": appID,
                                  @"Url": url,
                                  @"Domain": domain,
